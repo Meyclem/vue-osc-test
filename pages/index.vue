@@ -11,27 +11,31 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        clientX: 0,
-        clientY: 0,
-        text: ''
-      }
-    },
-    methods: {
-      movePoint() {
-        this.clientX = Math.floor(event.touches[0].clientX);
-        this.clientY = Math.floor(event.touches[0].clientY);
-        this.sendMouseCoords()
-      },
-      sendMouseCoords() {
-        console.log(`x: ${this.clientX} || y: ${this.clientY}`)
-      }
-    },
-    mounted() {
+import socket from '~/plugins/socketIo.js'
+
+export default {
+  data() {
+    return {
+      clientX: 0,
+      clientY: 0,
+      text: ''
     }
+  },
+  methods: {
+    movePoint() {
+      this.clientX = Math.floor(event.touches[0].clientX);
+      this.clientY = Math.floor(event.touches[0].clientY);
+      socket.emit('mouse', this.sendMouseCoords())
+    },
+    sendMouseCoords() {
+      const text = `x: ${this.clientX} || y: ${this.clientY}`
+      console.log(text)
+      return text
+    }
+  },
+  mounted() {
   }
+}
 </script>
 
 <style scoped>
