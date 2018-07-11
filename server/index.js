@@ -1,11 +1,11 @@
-
+const socketIO = require('socket.io');
 const express = require('express')
 const { Nuxt, Builder } = require('nuxt')
-const app = express()
+const server = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-app.set('port', port)
+server.set('port', port)
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -22,10 +22,23 @@ async function start() {
   }
 
   // Give nuxt middleware to express
-  app.use(nuxt.render)
+  server.use(nuxt.render)
 
   // Listen the server
-  app.listen(port, host)
+  const http = require('http').Server(server);
+  http.listen(port, host)
   console.log('Server listening on http://' + host + ':' + port) // eslint-disable-line no-console
+  const io = socketIO(http);
+
+  io.on('connection', (socket) => {
+    console.log('Client connected');
+    socket.on('disconnect', () => console.log('Client disconnected'));
+  });
+
+  setInterval(() => {
+    data = new Date().toTimeString()
+    console.log(data)
+    io.emit('time', data)
+  }, 1000);
 }
 start()
