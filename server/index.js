@@ -40,7 +40,7 @@ async function start() {
 
   setInterval(() => {
     data = new Date().toTimeString()
-    console.log(data)
+    // console.log(data)
     io.emit('time', data)
   }, 1000);
 }
