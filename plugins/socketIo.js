@@ -1,10 +1,11 @@
 import io from 'socket.io-client'
 
+// I can't get this working on heroku...
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-const wsUrl = 'https://nuxt-websocket.herokuapp.com/' + ':41845' // + port
-console.log(wsUrl)
+const wsUrl = 'http://' + host + ':' + port
+console.log('WS URL FROM socketIO.js plugin: ', wsUrl)
 
 const socket = io(wsUrl)
 

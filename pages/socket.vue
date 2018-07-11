@@ -10,8 +10,8 @@ import socket from '~/plugins/socketIo.js'
 export default {
   data() {
     return {
+      // this get time from the server ('time' event)
       serverTime: '',
-      biteTime: ''
     }
   },
   beforeMount() {

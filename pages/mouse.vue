@@ -25,6 +25,7 @@ export default {
     movePoint() {
       this.clientX = Math.floor(event.touches[0].clientX);
       this.clientY = Math.floor(event.touches[0].clientY);
+      // Each event throw an event in local but not in prod
       socket.emit('mouse', this.sendMouseCoords())
     },
     sendMouseCoords() {
