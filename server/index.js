@@ -3,7 +3,8 @@ const express = require('express')
 const { Nuxt, Builder } = require('nuxt')
 const server = express()
 const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
+const port = 41845
 
 server.set('port', port)
 
@@ -27,7 +28,7 @@ async function start() {
   // Listen the server
   const http = require('http').Server(server);
   http.listen(port, host)
-  console.log('Server listening on http://' + host + ':' + port) // eslint-disable-line no-console
+  console.log('Server listening on http://' + host + ':41845' // + port) // eslint-disable-line no-console
   const io = socketIO(http);
 
   io.on('connection', (socket) => {
