@@ -7,6 +7,6 @@ const port = process.env.PORT || 3000
 const wsUrl = 'http://' + host + ':' + port
 console.log('WS URL FROM socketIO.js plugin: ', wsUrl)
 
-const socket = io(wsUrl)
+const socket = io.connect(wsUrl)
 
 export default socket

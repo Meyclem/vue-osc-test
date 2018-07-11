@@ -1,6 +1,6 @@
 <template>
   <section>
-    <p>time: {{ serverTime }}</p>
+    <p>mouse: {{ serverTime }}</p>
   </section>
 </template>
 

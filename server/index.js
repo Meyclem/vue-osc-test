@@ -35,13 +35,14 @@ async function start() {
     socket.on('disconnect', () => console.log('Client disconnected'));
     socket.on('mouse', function(coords){
       console.log('MOUSE COORDS ' + coords);
+      io.emit('time', coords)
     });
   });
-
-  setInterval(() => {
-    data = new Date().toTimeString()
-    // console.log(data)
-    io.emit('time', data)
-  }, 1000);
+  //
+  // setInterval(() => {
+  //   data = new Date().toTimeString()
+  //   // console.log(data)
+  //   io.emit('time', data)
+  // }, 1000);
 }
 start()
