@@ -28,7 +28,7 @@ async function start() {
   // Listen the server
   const http = require('http').Server(server);
   http.listen(port, host)
-  console.log('Server listening on http://' + host + ':41845' // + port) // eslint-disable-line no-console
+  console.log('Server listening on http://' + host + ':41845') // + port) // eslint-disable-line no-console
   const io = socketIO(http);
 
   io.on('connection', (socket) => {
