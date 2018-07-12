@@ -37,6 +37,10 @@ async function start() {
       console.log('MOUSE COORDS ' + coords);
       io.emit('time', coords)
     });
+    socket.on('dist', function(data){
+      console.log('DATA FROM LOCAL UDP SERVER ' + data);
+      // io.emit('time', coords)
+    });
   });
   //
   // setInterval(() => {
