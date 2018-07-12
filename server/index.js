@@ -39,7 +39,7 @@ async function start() {
     });
     socket.on('dist', function(data){
       console.log('DATA FROM LOCAL UDP SERVER ' + data);
-      // io.emit('time', coords)
+      io.emit('dist', data)
     });
   });
   //
