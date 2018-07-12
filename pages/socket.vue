@@ -18,6 +18,9 @@ export default {
     socket.on('time', (data) => {
       this.serverTime = data
     })
+    socket.on('dist', (data) => {
+      this.serverTime = data
+    })
   },
 }
 </script>
