@@ -6,7 +6,8 @@ const port = process.env.PORT || 3000
 
 const wsUrl = 'http://' + host + ':' + port
 console.log('WS URL FROM socketIO.js plugin: ', 'https://nuxt-websocket.herokuapp.com/')
+console.log(wsUrl)
 
-const socket = io.connect('https://nuxt-websocket.herokuapp.com/')
+const socket = io.connect(wsUrl)
 
 export default socket

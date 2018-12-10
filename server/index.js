@@ -32,11 +32,19 @@ async function start() {
 
   io.on('connection', (socket) => {
     console.log('Client connected');
+
     socket.on('disconnect', () => console.log('Client disconnected'));
+
     socket.on('mouse', function(coords){
       console.log('MOUSE COORDS ' + coords);
-      io.emit('time', coords)
+      io.emit('mouse', coords)
     });
+
+    socket.on('action', function(data){
+      console.log('tool used ' + data);
+      io.emit('action', data)
+    });
+
     socket.on('dist', function(data){
       console.log('DATA FROM LOCAL UDP SERVER ' + data);
       io.emit('dist', data)
