@@ -33,15 +33,15 @@ export default {
       machines: {
         bois: {
           name: 'bois',
-          actions: ['Couper', 'Peindre', 'Poncer', 'Scier'],
+          actions: ['couper', 'peindrebois', 'poncer', 'scierbois'],
         },
         helice: {
           name: 'helice',
-          actions: ['Chauffer', 'Meuler', 'PeindreHelice', 'Plier'],
+          actions: ['chauffer', 'meuler', 'peindrehelice', 'plier'],
         },
         moteur: {
           name: 'moteur',
-          actions: ['Percer', 'ScierMetaux', 'Souder', 'Visser'],
+          actions: ['percer', 'sciermetaux', 'souder', 'visser'],
         }
       }
     }
