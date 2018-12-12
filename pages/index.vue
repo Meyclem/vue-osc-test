@@ -31,12 +31,16 @@
       </div>
     </div>
     <div id="tools" v-if="selectedMachine">
-      <img
+      <div
+        @click="action(tool)"
         v-for="tool in selectedMachine.actions"
         :key="tool"
-        :src="`/images/${selectedMachine.name}/${tool}.png`"
-        @click="action(tool)"
-        class="tool">
+        class="tool"
+        :id="tool">
+        <img
+          :src="`/images/${selectedMachine.name}/${tool}.png`"
+          class="tool">
+      </div>
     </div>
   </div>
 </template>
@@ -67,14 +71,41 @@ export default {
           name: 'bois',
           actions: ['couper', 'peindrebois', 'poncer', 'scierbois'],
         },
-      ]
+      ],
+      actions: {
+        meuler: true,
+        chauffer: true,
+        peindrehelice: true,
+        plier: true,
+        percer: true,
+        sciermetaux: true,
+        souder: true,
+        visser: true,
+        couper: true,
+        peindrebois: true,
+        poncer: true,
+        scierbois: true,
+      }
     }
   },
   methods: {
     action (tool) {
-      console.log(tool)
-      socket.emit('action', [this.selectedMachine.name, tool])
-      navigator.vibrate(200)
+      if (this.actions[tool]) {
+        this.actions[tool] = false
+        event.stopPropagation()
+        console.log(tool)
+        socket.emit('action', [this.selectedMachine.name, tool])
+        navigator.vibrate(200)
+        const cd = `<div class="cooldown"><svg><circle r="50" cx="75" cy="75"></circle></svg></div>`
+        event.target.parentNode.innerHTML += cd
+        setTimeout(() => {
+          const el = document.getElementById(tool)
+          if (el) { el.querySelector('.cooldown').remove() }
+          this.actions[tool] = true
+        }, 2000)
+      } else {
+        event.preventDefault()
+      }
     },
     nextMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
@@ -84,14 +115,8 @@ export default {
     previousMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
       this.selectedMachine = this.machines[index - 1]
-      navigator.vibrate(500)
-    },
-    // flash (id) {
-    //   document.getElementById(id).classList.add('flash')
-    //   setTimeout(() => {
-    //     document.getElementById(id).classList.add('flash')
-    //   }, 800)
-    // }
+      navigator.vibrate([50, 50])
+    }
   },
   mounted () {
     this.selectedMachine = this.machines[1]
@@ -187,16 +212,57 @@ body {
 #tools {
   width: 80%;
   margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .tool {
-  width: 50%;
+  position: relative;
+}
+.tool img {
+  width: 150px;
+  height: 150px;
   opacity: 1;
   transform: scale(1);
   transition: opacity ease 0.5s;
   transition: transform ease 0.5s;
 }
-.tool:active {
+.tool:active img {
   opacity: 0.7;
   transform: scale(0.9);
+}
+
+.tool svg {
+  background-color: #4C4C4C;
+  opacity: 0.7;
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  stroke-dasharray: 314px;
+  stroke-dashoffset: 0px;
+  /* stroke-dashoffset: 314px; */
+  stroke-linecap: round;
+  stroke-width: 10px;
+  stroke: white;
+  fill: none;
+  animation: countdown 2s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 314px;
+  }
 }
 </style>
