@@ -1,5 +1,5 @@
 <template>
-  <div id="plane">
+  <div id="plane" @click.right.prevent>
     <div id="machines">
       <div
         v-for="machine in machines"
