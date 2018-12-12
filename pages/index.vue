@@ -143,9 +143,11 @@ body {
   background-color: white;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 #workshop > img {
   width: 100%;
+  /* height: 100%; */
 }
 .previous-workshop {
   left: 0;
