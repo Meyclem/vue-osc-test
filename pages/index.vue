@@ -53,9 +53,9 @@ export default {
       selectedMachine: null,
       machines: [
         {
-          title: 'Travail du bois',
-          name: 'bois',
-          actions: ['couper', 'peindrebois', 'poncer', 'scierbois'],
+          title: 'Elaboration du moteur',
+          name: 'moteur',
+          actions: ['percer', 'sciermetaux', 'souder', 'visser'],
         },
         {
           title: 'Fabrication de l\'hélice',
@@ -63,10 +63,10 @@ export default {
           actions: ['chauffer', 'meuler', 'peindrehelice', 'plier'],
         },
         {
-          title: 'Elaboration du moteur',
-          name: 'moteur',
-          actions: ['percer', 'sciermetaux', 'souder', 'visser'],
-        }
+          title: 'Travail du bois',
+          name: 'bois',
+          actions: ['couper', 'peindrebois', 'poncer', 'scierbois'],
+        },
       ]
     }
   },
