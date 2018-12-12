@@ -143,10 +143,14 @@ body {
   background-color: white;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
 }
 #workshop > img {
-  width: 100%;
+  /* width: auto; */
+  /* height: 200px; */
   /* height: 100%; */
 }
 .previous-workshop {
