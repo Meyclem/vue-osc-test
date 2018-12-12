@@ -104,7 +104,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7) !important;
 }
 #plane {
-  height: 100vh;
+  height: 90vh;
   max-height: 800px;
   display: flex;
   flex-direction: column;
