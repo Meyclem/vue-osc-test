@@ -190,5 +190,13 @@ body {
 }
 .tool {
   width: 50%;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity ease 0.5s;
+  transition: transform ease 0.5s;
+}
+.tool:active {
+  opacity: 0.7;
+  transform: scale(0.9);
 }
 </style>
