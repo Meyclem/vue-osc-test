@@ -110,7 +110,7 @@ export default {
     nextMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
       this.selectedMachine = this.machines[index + 1]
-      navigator.vibrate(500)
+      navigator.vibrate([50, 50])
     },
     previousMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
@@ -224,12 +224,14 @@ body {
   width: 150px;
   height: 150px;
   opacity: 1;
+  -webkit-transform: scale(1);
   transform: scale(1);
   transition: opacity ease 0.5s;
   transition: transform ease 0.5s;
 }
 .tool:active img {
   opacity: 0.7;
+  -webkit-transform: scale(0.9);
   transform: scale(0.9);
 }
 
