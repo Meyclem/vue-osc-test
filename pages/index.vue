@@ -210,7 +210,7 @@ body {
   height: 50px;
 }
 #tools {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   display: flex;
