@@ -1,5 +1,10 @@
 <template>
   <div id="plane" @click.right.prevent>
+    <Tutorial
+      v-if="tutorial"
+      @click="skipTutorial"
+      />
+    <div v-if="!tutorial" @click="tutorial = true" class="view-tuto">?</div>
     <div id="machines">
       <div
         v-for="machine in machines"
@@ -48,10 +53,12 @@
 <script>
 import socket from '~/plugins/socketIo.js'
 import { setTimeout } from 'timers';
+import Tutorial from '@/components/Tutorial.vue'
 
 export default {
   layout: 'default',
   name: 'Plane',
+  components: { Tutorial },
   data () {
     return {
       selectedMachine: null,
@@ -85,7 +92,8 @@ export default {
         peindrebois: true,
         poncer: true,
         scierbois: true,
-      }
+      },
+      tutorial: true
     }
   },
   methods: {
@@ -116,10 +124,21 @@ export default {
       const index = this.machines.indexOf(this.selectedMachine)
       this.selectedMachine = this.machines[index - 1]
       // navigator.vibrate([50, 50])
+    },
+    skipTutorial () {
+      // this.tutorial = false
+      window.localStorage.setItem('digilandz-tuto', true)
+      this.tutorial = false
     }
   },
   mounted () {
     this.selectedMachine = this.machines[1]
+    const skipTutorial = JSON.parse(window.localStorage.getItem('digilandz-tuto'))
+    console.log('init', skipTutorial)
+    if (skipTutorial) {
+      this.tutorial = !skipTutorial
+      console.log(this.tutorial)
+    }
   }
 }
 </script>
@@ -129,6 +148,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7) !important;
 }
 #plane {
+  position: relative;
   height: 90vh;
   max-height: 800px;
   display: flex;
@@ -136,6 +156,21 @@ body {
   justify-content: space-between;
   max-width: 500px;
   margin: auto;
+}
+.view-tuto {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid white;
+  top: 5px;
+  right: 5px;
 }
 @screen md {
   #plane {
