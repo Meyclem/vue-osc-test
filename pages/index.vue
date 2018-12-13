@@ -95,7 +95,7 @@ export default {
         event.stopPropagation()
         console.log(tool)
         socket.emit('action', [this.selectedMachine.name, tool])
-        navigator.vibrate(200)
+        // navigator.vibrate(200)
         const cd = `<div class="cooldown"><svg><circle r="50" cx="75" cy="75"></circle></svg></div>`
         event.target.parentNode.innerHTML += cd
         setTimeout(() => {
@@ -110,12 +110,12 @@ export default {
     nextMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
       this.selectedMachine = this.machines[index + 1]
-      navigator.vibrate([50, 50])
+      // navigator.vibrate([50, 50])
     },
     previousMachine () {
       const index = this.machines.indexOf(this.selectedMachine)
       this.selectedMachine = this.machines[index - 1]
-      navigator.vibrate([50, 50])
+      // navigator.vibrate([50, 50])
     }
   },
   mounted () {
