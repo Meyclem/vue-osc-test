@@ -43,11 +43,11 @@ export default {
 #tutorial {
   position: absolute;
   z-index: 1000;
-  background-color: black;
+  background-color: rgb(100, 100, 100);
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
+  height: 90vh;
 }
 #tutorial div {
   text-align: center;
@@ -58,7 +58,7 @@ export default {
   margin-bottom: 10px;
 }
 h2 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 #tutorial button {
   /* z-index: 1001; */

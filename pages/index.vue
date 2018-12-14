@@ -145,7 +145,7 @@ export default {
 
 <style>
 body {
-  background-color: rgba(0, 0, 0, 0.7) !important;
+  background-color: rgb(100, 100, 100) !important;
 }
 #plane {
   position: relative;
@@ -162,8 +162,9 @@ body {
   color: white;
   font-size: 20px;
   font-weight: bolder;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  padding-top: 5px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,7 +183,8 @@ body {
   justify-content: center;
 }
 #machines h1 {
-  font-family: 'SansBeamBody';
+  /* font-family: 'SansBeamBody'; */
+  font-weight: 900;
   font-size: 1.2em;
   color: white;
 }
@@ -193,7 +195,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid rgba(0, 0, 0, 0.4) */
 }
 .selected {
   border: 4px solid green;
@@ -271,7 +272,7 @@ body {
 }
 
 .tool svg {
-  background-color: #4C4C4C;
+  background-color: rgb(100, 100, 100);
   opacity: 0.7;
   position: absolute;
   z-index: 10;

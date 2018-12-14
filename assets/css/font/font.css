@@ -3,3 +3,13 @@
     src: url('SansBeamBody-Black.otf');
     font-weight: 900;
 }
+@font-face {
+    font-family: 'SansBeamBody';
+    src: url('SansBeamBody-Regular.otf');
+    font-weight: 400;
+}
+
+* {
+  font-family: 'SansBeamBody';
+  font-weight: 400;
+}
