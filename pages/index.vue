@@ -34,6 +34,7 @@
         @click="nextMachine()">
           <img src="/images/arrow.svg" alt="">
       </div>
+      <div class="ws-cooldown" v-if="!changeWorkshop" id="ws-cd"><svg><circle r="50" cx="75" cy="75"></circle></svg></div>
     </div>
     <div id="tools" v-if="selectedMachine">
       <div
@@ -93,6 +94,8 @@ export default {
         poncer: true,
         scierbois: true,
       },
+      changeWorkshop: true,
+      opacity: 1,
       tutorial: true
     }
   },
@@ -110,25 +113,41 @@ export default {
           const el = document.getElementById(tool)
           if (el) { el.querySelector('.cooldown').remove() }
           this.actions[tool] = true
-        }, 2000)
+        }, 5000)
       } else {
         event.preventDefault()
       }
     },
     nextMachine () {
-      const index = this.machines.indexOf(this.selectedMachine)
-      this.selectedMachine = this.machines[index + 1]
+      if (this.changeWorkshop) {
+        const index = this.machines.indexOf(this.selectedMachine)
+        this.selectedMachine = this.machines[index + 1]
+        this.addCDToWorkshop()
+      }
       // navigator.vibrate([50, 50])
     },
     previousMachine () {
-      const index = this.machines.indexOf(this.selectedMachine)
-      this.selectedMachine = this.machines[index - 1]
+      if (this.changeWorkshop) {
+        const index = this.machines.indexOf(this.selectedMachine)
+        this.selectedMachine = this.machines[index - 1]
+        this.addCDToWorkshop()
+      }
       // navigator.vibrate([50, 50])
     },
     skipTutorial () {
       // this.tutorial = false
       window.localStorage.setItem('digilandz-tuto', true)
       this.tutorial = false
+    },
+    addCDToWorkshop () {
+      this.changeWorkshop = false
+      // const ws = document.getElementById('workshop')
+      // ws.innerHTML += '<div class="ws-cooldown" id="ws-cd"><svg><circle r="50" cx="75" cy="75"></circle></svg></div>'
+      setTimeout(() => {
+        // document.getElementById('ws-cd').remove()
+        // this.opacity = 1
+        this.changeWorkshop = true
+      }, 5000)
     }
   },
   mounted () {
@@ -208,11 +227,31 @@ body {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 #workshop > img {
   /* width: auto; */
   /* height: 200px; */
   /* height: 100%; */
+}
+.ws-cooldown {
+  position: absolute;
+  background-color: rgb(100, 100, 100);
+  opacity: 0.7;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ws-cooldown svg {
+  height: 150px;
+  width: 150px;
+}
+.ws-cooldown circle {
+  animation: countdown 5s linear infinite forwards;
 }
 .previous-workshop {
   left: 0;
@@ -272,8 +311,6 @@ body {
 }
 
 .tool svg {
-  background-color: rgb(100, 100, 100);
-  opacity: 0.7;
   position: absolute;
   z-index: 10;
   pointer-events: none;
@@ -281,6 +318,10 @@ body {
   right: 0;
   width: 150px;
   height: 150px;
+  background-color: rgb(100, 100, 100);
+  opacity: 0.7;
+}
+svg {
   transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
@@ -292,7 +333,7 @@ svg circle {
   stroke-width: 10px;
   stroke: white;
   fill: none;
-  animation: countdown 2s linear infinite forwards;
+  animation: countdown 5s linear infinite forwards;
 }
 
 @keyframes countdown {
