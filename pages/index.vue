@@ -1,5 +1,6 @@
 <template>
   <div id="plane" @click.right.prevent>
+    <LogToLoomGame game="StQuentin"/>
     <Tutorial
       v-if="tutorial"
       @click="skipTutorial"
@@ -55,11 +56,12 @@
 import socket from '~/plugins/socketIo.js'
 import { setTimeout } from 'timers';
 import Tutorial from '@/components/Tutorial.vue'
+import LogToLoomGame from '@/components/LogToLoomGame.vue'
 
 export default {
   layout: 'default',
   name: 'Plane',
-  components: { Tutorial },
+  components: { Tutorial, LogToLoomGame },
   data () {
     return {
       selectedMachine: null,

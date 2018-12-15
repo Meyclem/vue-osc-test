@@ -1,7 +1,7 @@
 {
-  "name": "vue-osc-test",
-  "version": "1.0.0",
-  "description": "My fabulous Nuxt.js project",
+  "name": "LoomProd Games",
+  "version": "1.0.1",
+  "description": "Bienvenue sur l'app des projections interactives de Loom Prod!",
   "author": "Meyclem",
   "engines": {
     "node": "10.0.0"
