@@ -35,7 +35,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/socketIo.js', ssr: false }
+    { src: '~/plugins/socketIo.js', ssr: false },
+    { src: '~plugins/ga.js', ssr: false }
   ],
 
   /*
@@ -43,7 +44,10 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-131008176-1'
+    }]
   ],
   /*
   ** Axios module configuration
